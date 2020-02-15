@@ -7,3 +7,9 @@ D:\www\Sistemacompras\Sistemacompras\obj\Debug\Sistemacompras.Properties.Resourc
 D:\www\Sistemacompras\Sistemacompras\obj\Debug\Sistemacompras.csproj.GenerateResource.cache
 D:\www\Sistemacompras\Sistemacompras\obj\Debug\Sistemacompras.exe
 D:\www\Sistemacompras\Sistemacompras\obj\Debug\Sistemacompras.pdb
+D:\www\Sistemacompras\Sistemacompras\obj\Debug\Sistemacompras.NewForm.resources
+D:\www\Sistemacompras\Sistemacompras\bin\Debug\EntityFramework.dll
+D:\www\Sistemacompras\Sistemacompras\bin\Debug\EntityFramework.SqlServer.dll
+D:\www\Sistemacompras\Sistemacompras\bin\Debug\EntityFramework.xml
+D:\www\Sistemacompras\Sistemacompras\bin\Debug\EntityFramework.SqlServer.xml
+D:\www\Sistemacompras\Sistemacompras\obj\Debug\Sistemacompras.csproj.CopyComplete

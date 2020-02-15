@@ -7,14 +7,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Sistemacompras.Entities;
 
 namespace Sistemacompras
 {
     public partial class Home : Form
     {
+        private Department db;
         public Home()
         {
             InitializeComponent();
+
         }
     }
 }

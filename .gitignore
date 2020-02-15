@@ -353,6 +353,6 @@ MigrationBackup/
 .ionide/
 
 # Visual Studio
-.vs
+.vs/*
 .Sistemacompras/bin
 .Sistemacompras/obj

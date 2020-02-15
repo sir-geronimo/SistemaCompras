@@ -47,6 +47,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contracts\IAuditableEntity.cs" />
+    <Compile Include="Entities\ItemRequest.cs" />
+    <Compile Include="Entities\PurchaseOrder.cs" />
     <Compile Include="Entities\Brand.cs" />
     <Compile Include="Entities\Department.cs" />
     <Compile Include="Entities\Employee.cs" />

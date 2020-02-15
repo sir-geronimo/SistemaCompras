@@ -11,7 +11,7 @@ namespace Sistemacompras.Entities
     {
         public int Id { get; set; }
         public string Description { get; set; }
-        public int StatusId { get; set; }
+        public int? StatusId { get; set; }
         public virtual Status Status { get; set; }
 
         #region Interface

@@ -13,14 +13,14 @@
                     {
                         Id = c.Int(nullable: false, identity: true),
                         Description = c.String(),
-                        StatusId = c.Int(nullable: false),
+                        StatusId = c.Int(),
                         CreatedDate = c.DateTime(nullable: false),
                         CreatedBy = c.Int(nullable: false),
                         UpdatedDate = c.DateTime(nullable: false),
                         UpdatedBy = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Status", t => t.StatusId, cascadeDelete: true)
+                .ForeignKey("dbo.Status", t => t.StatusId)
                 .Index(t => t.StatusId);
             
             CreateTable(
@@ -41,7 +41,7 @@
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(),
+                        Name = c.String(maxLength: 100),
                         StatusId = c.Int(nullable: false),
                         CreatedDate = c.DateTime(nullable: false),
                         CreatedBy = c.Int(nullable: false),
@@ -59,14 +59,14 @@
                         Id = c.Int(nullable: false, identity: true),
                         Identification = c.String(),
                         Name = c.String(),
-                        DepartmentId = c.Int(nullable: false),
+                        DepartmentId = c.Int(),
                         CreatedDate = c.DateTime(nullable: false),
                         CreatedBy = c.Int(nullable: false),
                         UpdatedDate = c.DateTime(nullable: false),
                         UpdatedBy = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Departments", t => t.DepartmentId, cascadeDelete: true)
+                .ForeignKey("dbo.Departments", t => t.DepartmentId)
                 .Index(t => t.DepartmentId);
             
             CreateTable(
@@ -76,10 +76,10 @@
                         Id = c.Int(nullable: false, identity: true),
                         RequestedBy = c.Int(nullable: false),
                         Date = c.DateTime(nullable: false),
-                        ItemId = c.Int(nullable: false),
+                        ItemId = c.Int(),
                         Quantity = c.Int(nullable: false),
-                        UnitId = c.Int(nullable: false),
-                        StatusId = c.Int(nullable: false),
+                        UnitId = c.Int(),
+                        StatusId = c.Int(),
                         CreatedDate = c.DateTime(nullable: false),
                         CreatedBy = c.Int(nullable: false),
                         UpdatedDate = c.DateTime(nullable: false),
@@ -88,9 +88,9 @@
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Employees", t => t.Employee_Id)
-                .ForeignKey("dbo.Items", t => t.ItemId, cascadeDelete: false)
-                .ForeignKey("dbo.Status", t => t.StatusId, cascadeDelete: true)
-                .ForeignKey("dbo.Units", t => t.UnitId, cascadeDelete: true)
+                .ForeignKey("dbo.Items", t => t.ItemId)
+                .ForeignKey("dbo.Status", t => t.StatusId)
+                .ForeignKey("dbo.Units", t => t.UnitId)
                 .Index(t => t.ItemId)
                 .Index(t => t.UnitId)
                 .Index(t => t.StatusId)
@@ -102,19 +102,19 @@
                     {
                         Id = c.Int(nullable: false, identity: true),
                         Description = c.String(),
-                        BrandId = c.Int(nullable: false),
-                        UnitId = c.Int(nullable: false),
+                        BrandId = c.Int(),
+                        UnitId = c.Int(),
                         Stock = c.Int(nullable: false),
-                        StatusId = c.Int(nullable: false),
+                        StatusId = c.Int(),
                         CreatedDate = c.DateTime(nullable: false),
                         CreatedBy = c.Int(nullable: false),
                         UpdatedDate = c.DateTime(nullable: false),
                         UpdatedBy = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Brands", t => t.BrandId, cascadeDelete: true)
-                .ForeignKey("dbo.Status", t => t.StatusId, cascadeDelete: true)
-                .ForeignKey("dbo.Units", t => t.UnitId, cascadeDelete: true)
+                .ForeignKey("dbo.Brands", t => t.BrandId)
+                .ForeignKey("dbo.Status", t => t.StatusId)
+                .ForeignKey("dbo.Units", t => t.UnitId)
                 .Index(t => t.BrandId)
                 .Index(t => t.UnitId)
                 .Index(t => t.StatusId);
@@ -125,14 +125,14 @@
                     {
                         Id = c.Int(nullable: false, identity: true),
                         Description = c.String(),
-                        StatusId = c.Int(nullable: false),
+                        StatusId = c.Int(),
                         CreatedDate = c.DateTime(nullable: false),
                         CreatedBy = c.Int(nullable: false),
                         UpdatedDate = c.DateTime(nullable: false),
                         UpdatedBy = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Status", t => t.StatusId, cascadeDelete: true)
+                .ForeignKey("dbo.Status", t => t.StatusId)
                 .Index(t => t.StatusId);
             
             CreateTable(
@@ -142,14 +142,14 @@
                         Id = c.Int(nullable: false, identity: true),
                         Identification = c.String(),
                         Name = c.String(),
-                        StatusId = c.Int(nullable: false),
+                        StatusId = c.Int(),
                         CreatedDate = c.DateTime(nullable: false),
                         CreatedBy = c.Int(nullable: false),
                         UpdatedDate = c.DateTime(nullable: false),
                         UpdatedBy = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Status", t => t.StatusId, cascadeDelete: true)
+                .ForeignKey("dbo.Status", t => t.StatusId)
                 .Index(t => t.StatusId);
             
             CreateTable(
@@ -159,11 +159,11 @@
                         Id = c.Int(nullable: false, identity: true),
                         ItemRequestId = c.Int(nullable: false),
                         Date = c.DateTime(nullable: false),
-                        StatusId = c.Int(nullable: false),
-                        ItemId = c.Int(nullable: false),
+                        StatusId = c.Int(),
+                        ItemId = c.Int(),
                         Quantity = c.Int(nullable: false),
-                        UnitId = c.Int(nullable: false),
-                        BrandId = c.Int(nullable: false),
+                        UnitId = c.Int(),
+                        BrandId = c.Int(),
                         Price = c.Double(nullable: false),
                         CreatedDate = c.DateTime(nullable: false),
                         CreatedBy = c.Int(nullable: false),
@@ -171,11 +171,11 @@
                         UpdatedBy = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Brands", t => t.BrandId, cascadeDelete: true)
-                .ForeignKey("dbo.Items", t => t.ItemId, cascadeDelete: true)
+                .ForeignKey("dbo.Brands", t => t.BrandId)
+                .ForeignKey("dbo.Items", t => t.ItemId)
                 .ForeignKey("dbo.ItemRequests", t => t.ItemRequestId, cascadeDelete: true)
-                .ForeignKey("dbo.Status", t => t.StatusId, cascadeDelete: true)
-                .ForeignKey("dbo.Units", t => t.UnitId, cascadeDelete: true)
+                .ForeignKey("dbo.Status", t => t.StatusId)
+                .ForeignKey("dbo.Units", t => t.UnitId)
                 .Index(t => t.ItemRequestId)
                 .Index(t => t.StatusId)
                 .Index(t => t.ItemId)

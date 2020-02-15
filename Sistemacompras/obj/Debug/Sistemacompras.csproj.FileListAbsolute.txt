@@ -13,3 +13,4 @@ D:\www\Sistemacompras\Sistemacompras\bin\Debug\EntityFramework.SqlServer.dll
 D:\www\Sistemacompras\Sistemacompras\bin\Debug\EntityFramework.xml
 D:\www\Sistemacompras\Sistemacompras\bin\Debug\EntityFramework.SqlServer.xml
 D:\www\Sistemacompras\Sistemacompras\obj\Debug\Sistemacompras.csproj.CopyComplete
+D:\www\Sistemacompras\Sistemacompras\obj\Debug\Sistemacompras.Migrations.Initial.resources

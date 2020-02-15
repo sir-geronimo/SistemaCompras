@@ -1,0 +1,9 @@
+D:\www\Sistemacompras\Sistemacompras\bin\Debug\Sistemacompras.exe.config
+D:\www\Sistemacompras\Sistemacompras\bin\Debug\Sistemacompras.exe
+D:\www\Sistemacompras\Sistemacompras\bin\Debug\Sistemacompras.pdb
+D:\www\Sistemacompras\Sistemacompras\obj\Debug\Sistemacompras.csprojAssemblyReference.cache
+D:\www\Sistemacompras\Sistemacompras\obj\Debug\Sistemacompras.Home.resources
+D:\www\Sistemacompras\Sistemacompras\obj\Debug\Sistemacompras.Properties.Resources.resources
+D:\www\Sistemacompras\Sistemacompras\obj\Debug\Sistemacompras.csproj.GenerateResource.cache
+D:\www\Sistemacompras\Sistemacompras\obj\Debug\Sistemacompras.exe
+D:\www\Sistemacompras\Sistemacompras\obj\Debug\Sistemacompras.pdb

@@ -1,19 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Sistemacompras.Contracts;
+﻿using Sistemacompras.Contracts;
+using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Sistemacompras.Entities
 {
     class Employee : IAuditableEntity
     {
+        [Key]
         public int Id { get; set; }
-        public string Identification { get; set; }
-        public string Name { get; set; }
-        public int DepartmentId { get; set; }
+        public int UserId { get; set; }
+        public virtual User User { get; set; }
+        public int? DepartmentId { get; set; }
         public virtual Department Department { get; set; }
+        public int? StatusId { get; set; }
+        public virtual Status Status { get; set; }
 
         #region Interface
         public DateTime CreatedDate { get; set; }

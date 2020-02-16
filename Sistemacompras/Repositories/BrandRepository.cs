@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 using Sistemacompras.Contracts;
 using Sistemacompras.Entities;
 using Sistemacompras.Enum;
+using Sistemacompras.Dto;
 
 namespace Sistemacompras.Repositories
 {
-    class BrandRepository : IRepository<Brand>
+    class BrandRepository : IRepository<Brand, BrandDto>
     {
         private PurchaseContext _Context;
 
@@ -18,29 +19,43 @@ namespace Sistemacompras.Repositories
             _Context = new PurchaseContext();
         }
 
-        public Brand Get(int id)
+        public BrandDto Get(int id)
         {
             return _Context.Brands
                 .Where(x => x.Id == id)
+                .Select(x => new BrandDto
+                {
+                    Id = x.Id,
+                    Description = x.Description,
+                    Status = x.Status.Name,
+                    CreatedDate = x.CreatedDate
+                })
                 .FirstOrDefault();
         }
 
-        public IEnumerable<Brand> GetAll()
+        public IEnumerable<BrandDto> GetAll()
         {
             return _Context.Brands
-                .Where(x => x.StatusId != (int)StatusEnum.Inactive)
+                .Where(x => x.StatusId == (int)StatusEnum.Active)
+                .Select(x => new BrandDto
+                {
+                    Id = x.Id,
+                    Description = x.Description,
+                    Status = x.Status.Name,
+                    CreatedDate = x.CreatedDate
+                })
                 .ToList();
         }
 
-        public Brand Create(Brand data)
+        public BrandDto Create(Brand data)
         {
-            Brand newBrand = new Brand();
+            Brand item = _Context.Brands.Add(data);
+            _Context.SaveChanges();
 
-
-            return newBrand;
+            return Get(item.Id);
         }
 
-        public Brand Update(Brand data)
+        public BrandDto Update(Brand data)
         {
             if (data?.Id != null)
             {
@@ -48,8 +63,11 @@ namespace Sistemacompras.Repositories
                     .Where(x => x.Id == data.Id)
                     .FirstOrDefault();
 
-                brand = data;
-                return brand;
+                brand.Description = data.Description;
+                brand.StatusId = data.StatusId;
+                _Context.SaveChanges();
+
+                return Get(brand.Id);
             }
             else
             {
@@ -65,7 +83,7 @@ namespace Sistemacompras.Repositories
                     .Where(x => x.Id == id)
                     .FirstOrDefault();
 
-                brand.StatusId = (int)StatusEnum.Inactive;
+                brand.StatusId = (int)StatusEnum.Deleted;
                 return brand.Id;
             }
             else

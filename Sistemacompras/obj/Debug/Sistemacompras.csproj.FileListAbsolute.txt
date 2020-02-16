@@ -7,7 +7,6 @@ D:\www\Sistemacompras\Sistemacompras\obj\Debug\Sistemacompras.Properties.Resourc
 D:\www\Sistemacompras\Sistemacompras\obj\Debug\Sistemacompras.csproj.GenerateResource.cache
 D:\www\Sistemacompras\Sistemacompras\obj\Debug\Sistemacompras.exe
 D:\www\Sistemacompras\Sistemacompras\obj\Debug\Sistemacompras.pdb
-D:\www\Sistemacompras\Sistemacompras\obj\Debug\Sistemacompras.NewForm.resources
 D:\www\Sistemacompras\Sistemacompras\bin\Debug\EntityFramework.dll
 D:\www\Sistemacompras\Sistemacompras\bin\Debug\EntityFramework.SqlServer.dll
 D:\www\Sistemacompras\Sistemacompras\bin\Debug\EntityFramework.xml
@@ -17,3 +16,9 @@ D:\www\Sistemacompras\Sistemacompras\obj\Debug\Sistemacompras.Migrations.Initial
 D:\www\Sistemacompras\Sistemacompras\obj\Debug\Sistemacompras.Migrations.up1.resources
 D:\www\Sistemacompras\Sistemacompras\obj\Debug\Sistemacompras.Migrations.up2.resources
 D:\www\Sistemacompras\Sistemacompras\obj\Debug\Sistemacompras.Migrations.up3.resources
+D:\www\Sistemacompras\Sistemacompras\obj\Debug\Sistemacompras.Forms.EmployeeForm.resources
+D:\www\Sistemacompras\Sistemacompras\obj\Debug\Sistemacompras.Forms.DepartmentForm.resources
+D:\www\Sistemacompras\Sistemacompras\obj\Debug\Sistemacompras.Forms.ItemForm.resources
+D:\www\Sistemacompras\Sistemacompras\obj\Debug\Sistemacompras.Migrations.up4.resources
+D:\www\Sistemacompras\Sistemacompras\obj\Debug\Sistemacompras.Migrations.up5.resources
+D:\www\Sistemacompras\Sistemacompras\obj\Debug\Sistemacompras.Forms.BrandForm.resources

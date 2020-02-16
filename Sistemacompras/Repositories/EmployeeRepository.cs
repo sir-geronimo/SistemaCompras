@@ -1,13 +1,14 @@
 ﻿using Sistemacompras.Dto;
 using Sistemacompras.Entities;
 using Sistemacompras.Enum;
+using Sistemacompras.Contracts;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 
 namespace Sistemacompras.Repositories
 {
-    class EmployeeRepository
+    class EmployeeRepository : IRepository<Employee, EmployeeDto>
     {
         private PurchaseContext _Context;
 
@@ -20,14 +21,14 @@ namespace Sistemacompras.Repositories
         {
             return _Context.Employees
                 .Where(x => x.Id == id)
-                .Include(x => x.User)
-                .Include(x => x.Department)
                 .Select(x => new EmployeeDto
                 {
                     Id = x.Id,
+                    Identification = x.User.Identification,
                     Name = x.User.Name,
                     Department = x.Department.Name,
-                    Status = x.Status.Name
+                    Status = x.Status.Name,
+                    CreatedDate = x.CreatedDate
                 })
                 .FirstOrDefault();
         }
@@ -35,39 +36,43 @@ namespace Sistemacompras.Repositories
         public IEnumerable<EmployeeDto> GetAll()
         {
             return _Context.Employees
-                .Where(x => x.StatusId == (int)StatusEnum.Active)
-                .Include(x => x.User)
-                .Include(x => x.Department)
+                .Where(x => x.StatusId == (int)StatusEnum.Inactive
+                    || x.StatusId == (int)StatusEnum.Active
+                )
                 .Select(x => new EmployeeDto
                 {
                     Id = x.Id,
+                    Identification = x.User.Identification,
                     Name = x.User.Name,
                     Department = x.Department.Name,
-                    Status = x.Status.Name
+                    Status = x.Status.Name,
+                    CreatedDate = x.CreatedDate
                 })
                 .ToList();
         }
 
-        public Employee Create(Employee data)
+        public EmployeeDto Create(Employee data)
         {
             Employee item = _Context.Employees.Add(data);
             _Context.SaveChanges();
 
-            return item;
+            return Get(item.Id);
         }
 
-        public Employee Update(Employee data)
+        public EmployeeDto Update(Employee data)
         {
             if (data?.Id != null)
             {
-                Employee Employee = _Context.Employees
+                Employee employee = _Context.Employees
                     .Where(x => x.Id == data.Id)
                     .FirstOrDefault();
 
-                Employee = data;
+                employee.UserId = data.UserId;
+                employee.DepartmentId = data.DepartmentId;
+                employee.StatusId = data.StatusId;
                 _Context.SaveChanges();
 
-                return Employee;
+                return Get(employee.Id);
             }
             else
             {
@@ -79,14 +84,14 @@ namespace Sistemacompras.Repositories
         {
             if (id > 0)
             {
-                Employee Employee = _Context.Employees
+                Employee employee = _Context.Employees
                     .Where(x => x.Id == id)
                     .FirstOrDefault();
 
-                Employee.StatusId = (int)StatusEnum.Deleted;
+                employee.StatusId = (int)StatusEnum.Deleted;
                 _Context.SaveChanges();
 
-                return Employee.Id;
+                return employee.Id;
             }
             else
             {

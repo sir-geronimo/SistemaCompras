@@ -1,6 +1,6 @@
-﻿namespace Sistemacompras
+﻿namespace Sistemacompras.Forms
 {
-    partial class NewForm
+    partial class UserForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,17 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.SuspendLayout();
-            // 
-            // NewForm
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.components = new System.ComponentModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Name = "NewForm";
-            this.Text = "Nuevo";
-            this.ResumeLayout(false);
-
+            this.Text = "UserForm";
         }
 
         #endregion

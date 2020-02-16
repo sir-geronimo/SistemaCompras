@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
 using Sistemacompras.Entities;
+using Sistemacompras.Contracts;
+using System.Data.Entity.Infrastructure;
 
 namespace Sistemacompras
 {
@@ -19,5 +21,38 @@ namespace Sistemacompras
         public DbSet<PurchaseOrder> PurchaseOrders { get; set; }
         public DbSet<Status> Statuses { get; set; }
         public DbSet<Unit> Units { get; set; }
+
+        public override int SaveChanges()
+        {
+            var entities = ChangeTracker.Entries<IAuditableEntity>();
+
+            if (entities.Count() > 0)
+            {
+                DateTime now = DateTime.Now;
+
+                foreach (var entity in entities.Where(x =>
+                    x.State == EntityState.Added || x.State == EntityState.Modified))
+                {
+                    if (entity.State == EntityState.Added)
+                    {
+                        entity.Entity.CreatedDate = now;
+                        entity.Entity.CreatedBy = 1;
+                    }
+
+                    entity.Entity.UpdatedDate = now;
+                    entity.Entity.UpdatedBy = 1;
+                }
+            }
+
+            try
+            {
+                return base.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException ex)
+            {
+                ex.Entries.Single().Reload();
+                return base.SaveChanges();
+            }
+        }
     }
 }

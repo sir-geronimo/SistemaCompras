@@ -8,9 +8,10 @@ namespace Sistemacompras.Enum
 {
     public enum StatusEnum
     {
-        Inactive = 0,
-        Active = 1,
-        Aproved = 2,
-        Declined = 3
+        Inactive = 1,
+        Active = 2,
+        Aproved = 3,
+        Declined = 4,
+        Deleted = 5
     }
 }

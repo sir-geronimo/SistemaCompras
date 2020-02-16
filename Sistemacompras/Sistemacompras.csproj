@@ -58,6 +58,8 @@
   <ItemGroup>
     <Compile Include="Contracts\IAuditableEntity.cs" />
     <Compile Include="Contracts\IRepository.cs" />
+    <Compile Include="Dto\DepartmentDto.cs" />
+    <Compile Include="Dto\EmployeeDto.cs" />
     <Compile Include="Entities\ItemRequest.cs" />
     <Compile Include="Entities\PurchaseOrder.cs" />
     <Compile Include="Entities\Brand.cs" />
@@ -67,6 +69,7 @@
     <Compile Include="Entities\Provider.cs" />
     <Compile Include="Entities\Status.cs" />
     <Compile Include="Entities\Unit.cs" />
+    <Compile Include="Entities\User.cs" />
     <Compile Include="Enum\StatusEnum.cs" />
     <Compile Include="Forms\Home.cs">
       <SubType>Form</SubType>
@@ -78,6 +81,18 @@
     <Compile Include="Migrations\202002152220448_Initial.designer.cs">
       <DependentUpon>202002152220448_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202002160038538_up1.cs" />
+    <Compile Include="Migrations\202002160038538_up1.designer.cs">
+      <DependentUpon>202002160038538_up1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002160113102_up2.cs" />
+    <Compile Include="Migrations\202002160113102_up2.designer.cs">
+      <DependentUpon>202002160113102_up2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002160119446_up3.cs" />
+    <Compile Include="Migrations\202002160119446_up3.designer.cs">
+      <DependentUpon>202002160119446_up3.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Forms\NewForm.cs">
       <SubType>Form</SubType>
@@ -88,6 +103,8 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PurchaseContext.cs" />
+    <Compile Include="Repositories\DepartmentRepository.cs" />
+    <Compile Include="Repositories\EmployeeRepository.cs" />
     <Compile Include="Repositories\BrandRepository.cs" />
     <Compile Include="Repositories\GenericRepository.cs" />
     <EmbeddedResource Include="Forms\Home.resx">
@@ -98,6 +115,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\NewForm.resx">
       <DependentUpon>NewForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002160038538_up1.resx">
+      <DependentUpon>202002160038538_up1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002160113102_up2.resx">
+      <DependentUpon>202002160113102_up2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002160119446_up3.resx">
+      <DependentUpon>202002160119446_up3.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

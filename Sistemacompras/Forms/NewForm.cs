@@ -1,20 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
 namespace Sistemacompras
 {
     public partial class NewForm : Form
     {
-        public NewForm()
+        public string Mode;
+
+        public NewForm(string mode)
         {
             InitializeComponent();
+            if (mode != null)
+            {
+                Mode = mode;
+
+                if (Mode.Equals("Create"))
+                {
+                    this.Text = "Crear";
+                }
+
+                if (Mode.Equals("Edit"))
+                {
+                    this.Text = "Editar";
+                }
+            }
         }
     }
 }

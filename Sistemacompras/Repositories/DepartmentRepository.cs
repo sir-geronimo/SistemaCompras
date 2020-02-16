@@ -9,47 +9,47 @@ using Sistemacompras.Enum;
 
 namespace Sistemacompras.Repositories
 {
-    class BrandRepository : IRepository<Brand>
+    class DepartmentRepository : IRepository<Department>
     {
         private PurchaseContext _Context;
 
-        public BrandRepository()
+        public DepartmentRepository()
         {
             _Context = new PurchaseContext();
         }
 
-        public Brand Get(int id)
+        public Department Get(int id)
         {
-            return _Context.Brands
+            return _Context.Departments
                 .Where(x => x.Id == id)
                 .FirstOrDefault();
         }
 
-        public IEnumerable<Brand> GetAll()
+        public IEnumerable<Department> GetAll()
         {
-            return _Context.Brands
+            return _Context.Departments
                 .Where(x => x.StatusId != (int)StatusEnum.Inactive)
                 .ToList();
         }
 
-        public Brand Create(Brand data)
+        public Department Create(Department data)
         {
-            Brand newBrand = new Brand();
+            Department newDepartment = new Department();
 
 
-            return newBrand;
+            return newDepartment;
         }
 
-        public Brand Update(Brand data)
+        public Department Update(Department data)
         {
             if (data?.Id != null)
             {
-                Brand brand = _Context.Brands
+                Department Department = _Context.Departments
                     .Where(x => x.Id == data.Id)
                     .FirstOrDefault();
 
-                brand = data;
-                return brand;
+                Department = data;
+                return Department;
             }
             else
             {
@@ -61,12 +61,12 @@ namespace Sistemacompras.Repositories
         {
             if (id > 0)
             {
-                Brand brand = _Context.Brands
+                Department Department = _Context.Departments
                     .Where(x => x.Id == id)
                     .FirstOrDefault();
 
-                brand.StatusId = (int)StatusEnum.Inactive;
-                return brand.Id;
+                Department.StatusId = (int)StatusEnum.Inactive;
+                return Department.Id;
             }
             else
             {

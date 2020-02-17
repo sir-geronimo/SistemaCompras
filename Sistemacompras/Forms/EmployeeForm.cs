@@ -1,20 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Sistemacompras.Repositories;
-using Sistemacompras.Dto;
+﻿using Sistemacompras.Dto;
 using Sistemacompras.Entities;
 using Sistemacompras.Enum;
+using Sistemacompras.Repositories;
+using System;
+using System.Data;
+using System.Linq;
+using System.Windows.Forms;
 
 namespace Sistemacompras.Forms
 {
-    public partial class EmployeeForm: Form
+    public partial class EmployeeForm : Form
     {
         public string mode;
         public DataGridViewRow row;
@@ -50,13 +45,15 @@ namespace Sistemacompras.Forms
         {
             var users = _Context.Users
                 .Where(x => x.StatusId == (int)StatusEnum.Active)
-                .Select(x => new {
+                .Select(x => new
+                {
                     x.Name
                 })
                 .ToArray();
             var departments = _Context.Departments
                 .Where(x => x.StatusId == (int)StatusEnum.Active)
-                .Select(x => new {
+                .Select(x => new
+                {
                     x.Name
                 })
                 .ToArray();
@@ -64,7 +61,8 @@ namespace Sistemacompras.Forms
                 .Where(x => x.Id == (int)StatusEnum.Active
                     || x.Id == (int)StatusEnum.Inactive
                 )
-                .Select(x => new {
+                .Select(x => new
+                {
                     x.Name
                 })
                 .ToArray();

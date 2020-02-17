@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Sistemacompras.Repositories;
-using Sistemacompras.Dto;
+﻿using Sistemacompras.Dto;
 using Sistemacompras.Entities;
 using Sistemacompras.Enum;
+using Sistemacompras.Repositories;
+using System;
+using System.Data;
+using System.Linq;
+using System.Windows.Forms;
 
 namespace Sistemacompras.Forms
 {
@@ -52,7 +47,8 @@ namespace Sistemacompras.Forms
                 .Where(x => x.Id == (int)StatusEnum.Active
                     || x.Id == (int)StatusEnum.Inactive
                 )
-                .Select(x => new {
+                .Select(x => new
+                {
                     x.Name
                 })
                 .ToArray();

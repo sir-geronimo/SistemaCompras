@@ -26,3 +26,4 @@ D:\www\Sistemacompras\Sistemacompras\obj\Debug\Sistemacompras.Forms.UnitForm.res
 D:\www\Sistemacompras\Sistemacompras\obj\Debug\Sistemacompras.Forms.ProviderForm.resources
 D:\www\Sistemacompras\Sistemacompras\obj\Debug\Sistemacompras.Migrations.up7.resources
 D:\www\Sistemacompras\Sistemacompras\obj\Debug\Sistemacompras.Home.resources
+D:\www\Sistemacompras\Sistemacompras\obj\Debug\Sistemacompras.Forms.UserForm.resources

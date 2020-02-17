@@ -90,7 +90,7 @@ namespace Sistemacompras.Repositories
 
                 provider.StatusId = (int)StatusEnum.Deleted;
                 _Context.SaveChanges();
-                
+
                 return provider.Id;
             }
             else

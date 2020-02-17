@@ -189,6 +189,9 @@
     <EmbeddedResource Include="Forms\UnitForm.resx">
       <DependentUpon>UnitForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UserForm.resx">
+      <DependentUpon>UserForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002152220448_Initial.resx">
       <DependentUpon>202002152220448_Initial.cs</DependentUpon>
     </EmbeddedResource>

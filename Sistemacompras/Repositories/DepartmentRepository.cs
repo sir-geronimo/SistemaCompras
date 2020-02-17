@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Sistemacompras.Contracts;
+﻿using Sistemacompras.Contracts;
+using Sistemacompras.Dto;
 using Sistemacompras.Entities;
 using Sistemacompras.Enum;
-using Sistemacompras.Dto;
-using System.Data.Entity;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Sistemacompras.Repositories
 {
-    class DepartmentRepository: IRepository<Department, DepartmentDto>
+    class DepartmentRepository : IRepository<Department, DepartmentDto>
     {
         private PurchaseContext _Context;
 

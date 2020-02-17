@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Sistemacompras.Contracts;
+﻿using Sistemacompras.Contracts;
+using Sistemacompras.Dto;
 using Sistemacompras.Entities;
 using Sistemacompras.Enum;
-using Sistemacompras.Dto;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Sistemacompras.Repositories
 {
@@ -90,7 +87,7 @@ namespace Sistemacompras.Repositories
 
                 unit.StatusId = (int)StatusEnum.Deleted;
                 _Context.SaveChanges();
-                
+
                 return unit.Id;
             }
             else

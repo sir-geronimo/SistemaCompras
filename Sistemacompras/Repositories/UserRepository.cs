@@ -29,7 +29,8 @@ namespace Sistemacompras.Repositories
                     Name = x.Name,
                     Username = x.Username,
                     Identification = x.Identification,
-                    Status = x.Status.Name
+                    Status = x.Status.Name,
+                    CreatedDate = x.CreatedDate
                 })
                 .FirstOrDefault();
         }
@@ -46,7 +47,8 @@ namespace Sistemacompras.Repositories
                     Name = x.Name,
                     Username = x.Username,
                     Identification = x.Identification,
-                    Status = x.Status.Name
+                    Status = x.Status.Name,
+                    CreatedDate = x.CreatedDate
                 })
                 .ToList();
         }

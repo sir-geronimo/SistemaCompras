@@ -1,9 +1,8 @@
-﻿using Sistemacompras.Dto;
+﻿using Sistemacompras.Contracts;
+using Sistemacompras.Dto;
 using Sistemacompras.Entities;
 using Sistemacompras.Enum;
-using Sistemacompras.Contracts;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 
 namespace Sistemacompras.Repositories

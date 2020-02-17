@@ -370,6 +370,62 @@ namespace Sistemacompras
                         ShowDeletedMessage(sender, e);
                     }
                     break;
+                case 1:
+                    if (idToDelete == departmentRepo.Get(idToDelete).Id)
+                    {
+                        departmentRepo.Delete(idToDelete);
+                        ShowDeletedMessage(sender, e);
+                    }
+                    break;
+                case 2:
+                    if (idToDelete == itemRepo.Get(idToDelete).Id)
+                    {
+                        itemRepo.Delete(idToDelete);
+                        ShowDeletedMessage(sender, e);
+                    }
+                    break;
+                case 3:
+                    if (idToDelete == brandRepo.Get(idToDelete).Id)
+                    {
+                        brandRepo.Delete(idToDelete);
+                        ShowDeletedMessage(sender, e);
+                    }
+                    break;
+                case 4:
+                    if (idToDelete == unitRepo.Get(idToDelete).Id)
+                    {
+                        unitRepo.Delete(idToDelete);
+                        ShowDeletedMessage(sender, e);
+                    }
+                    break;
+                case 5:
+                    if (idToDelete == providerRepo.Get(idToDelete).Id)
+                    {
+                        providerRepo.Delete(idToDelete);
+                        ShowDeletedMessage(sender, e);
+                    }
+                    break;
+                case 6:
+                    // if (idToDelete == requestRepo.Get(idToDelete).Id)
+                    // {
+                    //     requestRepo.Delete(idToDelete);
+                    //     ShowDeletedMessage(sender, e);
+                    // }
+                    break;
+                case 7:
+                    // if (idToDelete == orderRepo.Get(idToDelete).Id)
+                    // {
+                    //     orderRepo.Delete(idToDelete);
+                    //     ShowDeletedMessage(sender, e);
+                    // }
+                    break;
+                case 8:
+                    if (idToDelete == userRepo.Get(idToDelete).Id)
+                    {
+                        userRepo.Delete(idToDelete);
+                        ShowDeletedMessage(sender, e);
+                    }
+                    break;
             }
         }
 
@@ -409,7 +465,7 @@ namespace Sistemacompras
 
         private void SearchBtn_Click(object sender, EventArgs e)
         {
-
+            // TODO: Finish this
         }
 
         private void ShowDeletedMessage(object sender, EventArgs e)
@@ -478,5 +534,10 @@ namespace Sistemacompras
             }
         }
         #endregion
+
+        private void Home_Activated(object sender, EventArgs e)
+        {
+            RefreshBtn_Click(sender, e);
+        }
     }
 }

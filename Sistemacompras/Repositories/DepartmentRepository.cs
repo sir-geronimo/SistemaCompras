@@ -90,12 +90,14 @@ namespace Sistemacompras.Repositories
         {
             if (id > 0)
             {
-                Department Department = _Context.Departments
+                Department department = _Context.Departments
                     .Where(x => x.Id == id)
                     .FirstOrDefault();
 
-                Department.StatusId = (int)StatusEnum.Inactive;
-                return Department.Id;
+                department.StatusId = (int)StatusEnum.Deleted;
+                _Context.SaveChanges();
+
+                return department.Id;
             }
             else
             {

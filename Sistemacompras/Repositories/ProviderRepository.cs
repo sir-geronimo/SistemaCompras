@@ -89,6 +89,8 @@ namespace Sistemacompras.Repositories
                     .FirstOrDefault();
 
                 provider.StatusId = (int)StatusEnum.Deleted;
+                _Context.SaveChanges();
+                
                 return provider.Id;
             }
             else

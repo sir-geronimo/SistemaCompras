@@ -47,15 +47,15 @@
             this.RequestBtn = new System.Windows.Forms.Button();
             this.OrdersBtn = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.Btnx = new System.Windows.Forms.Button();
+            this.UsersBtn = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
             this.SearchBtn = new System.Windows.Forms.Button();
             this.QueryTxt = new System.Windows.Forms.TextBox();
             this.CbxCriteria = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.UsersBtn = new System.Windows.Forms.Button();
-            this.Btnx = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvGeneric)).BeginInit();
             this.panel2.SuspendLayout();
@@ -262,6 +262,26 @@
             this.panel3.Size = new System.Drawing.Size(525, 125);
             this.panel3.TabIndex = 14;
             // 
+            // Btnx
+            // 
+            this.Btnx.Location = new System.Drawing.Point(413, 80);
+            this.Btnx.Name = "Btnx";
+            this.Btnx.Size = new System.Drawing.Size(97, 34);
+            this.Btnx.TabIndex = 10;
+            this.Btnx.Text = "?";
+            this.Btnx.UseVisualStyleBackColor = true;
+            this.Btnx.Visible = false;
+            // 
+            // UsersBtn
+            // 
+            this.UsersBtn.Location = new System.Drawing.Point(413, 23);
+            this.UsersBtn.Name = "UsersBtn";
+            this.UsersBtn.Size = new System.Drawing.Size(97, 34);
+            this.UsersBtn.TabIndex = 9;
+            this.UsersBtn.Text = "Usuarios";
+            this.UsersBtn.UseVisualStyleBackColor = true;
+            this.UsersBtn.Click += new System.EventHandler(this.UsersBtn_Click);
+            // 
             // panel4
             // 
             this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -275,6 +295,16 @@
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(250, 125);
             this.panel4.TabIndex = 15;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(15, 5);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(63, 13);
+            this.label4.TabIndex = 9;
+            this.label4.Text = "Busqueda";
             // 
             // SearchBtn
             // 
@@ -322,36 +352,6 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "Criterio";
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(15, 5);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(63, 13);
-            this.label4.TabIndex = 9;
-            this.label4.Text = "Busqueda";
-            // 
-            // UsersBtn
-            // 
-            this.UsersBtn.Location = new System.Drawing.Point(413, 23);
-            this.UsersBtn.Name = "UsersBtn";
-            this.UsersBtn.Size = new System.Drawing.Size(97, 34);
-            this.UsersBtn.TabIndex = 9;
-            this.UsersBtn.Text = "Usuarios";
-            this.UsersBtn.UseVisualStyleBackColor = true;
-            this.UsersBtn.Click += new System.EventHandler(this.UsersBtn_Click);
-            // 
-            // Btnx
-            // 
-            this.Btnx.Location = new System.Drawing.Point(413, 80);
-            this.Btnx.Name = "Btnx";
-            this.Btnx.Size = new System.Drawing.Size(97, 34);
-            this.Btnx.TabIndex = 10;
-            this.Btnx.Text = "?";
-            this.Btnx.UseVisualStyleBackColor = true;
-            this.Btnx.Visible = false;
-            // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -366,6 +366,7 @@
             this.MaximizeBox = false;
             this.Name = "Home";
             this.Text = "Sistema de Compras";
+            this.Activated += new System.EventHandler(this.Home_Activated);
             this.Load += new System.EventHandler(this.Home_Load);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.DgvGeneric)).EndInit();

@@ -89,6 +89,8 @@ namespace Sistemacompras.Repositories
                     .FirstOrDefault();
 
                 brand.StatusId = (int)StatusEnum.Deleted;
+                _Context.SaveChanges();
+                
                 return brand.Id;
             }
             else

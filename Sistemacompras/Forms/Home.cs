@@ -1,6 +1,8 @@
-﻿using Sistemacompras.Forms;
+﻿using Sistemacompras.Dto;
+using Sistemacompras.Forms;
 using Sistemacompras.Repositories;
 using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace Sistemacompras
@@ -13,11 +15,12 @@ namespace Sistemacompras
         private readonly ItemRepository itemRepo;
         private readonly UserRepository userRepo;
         // private readonly ItemRequestRepository requestRepo;
-        // private readonly ProviderRepository providerRepo;
+        private readonly ProviderRepository providerRepo;
         // private readonly PurchaseOrderRepository orderRepo;
         // private readonly StatusRepository statusRepo;
-        // private readonly UnitRepository unitRepo;
+        private readonly UnitRepository unitRepo;
         private int activeGrid;
+        private List<Column> columns;
 
         public Home()
         {
@@ -28,16 +31,10 @@ namespace Sistemacompras
             itemRepo = new ItemRepository();
             userRepo = new UserRepository();
             // requestRepo = new GenericRepository<ItemRequest>();
-            // providerRepo = new GenericRepository<Provider>();
+            providerRepo = new ProviderRepository();
             // orderRepo = new GenericRepository<PurchaseOrder>();
             // statusRepo = new GenericRepository<Status>();
-            // unitRepo = new GenericRepository<Unit>();
-        }
-
-        private void SetCrudName(string text, int active)
-        {
-            GenericCrudName.Text = text;
-            activeGrid = active;
+            unitRepo = new UnitRepository();
         }
 
 
@@ -46,60 +43,294 @@ namespace Sistemacompras
             EmployeesBtn_Click(sender, e);
         }
 
+        private void SetCrudName(string text, int active, IEnumerable<object> data, List<Column> columns)
+        {
+            GenericCrudName.Text = text;
+            activeGrid = active;
+            DgvGeneric.DataSource = data;
+
+            foreach (Column column in columns)
+            {
+                DgvGeneric.Columns[column.Name].HeaderText = column.Text;
+            }
+            DgvGeneric.AutoResizeColumns();
+        }
+
         #region Crud Tables
 
         private void EmployeesBtn_Click(object sender, EventArgs e)
         {
-            SetCrudName("Empleados", 0);
-            DgvGeneric.DataSource = employeeRepo.GetAll();
+            columns = new List<Column>()
+            {
+                new Column()
+                {
+                    Name = "Identification",
+                    Text = "Identificacion"
+                },
+                new Column()
+                {
+                    Name = "Name",
+                    Text = "Nombre"
+                },
+                new Column()
+                {
+                    Name = "Department",
+                    Text = "Departamento"
+                },
+                new Column()
+                {
+                    Name = "Status",
+                    Text = "Estado"
+                },
+                new Column()
+                {
+                    Name = "CreatedDate",
+                    Text = "Fecha de Creacion"
+                },
+            };
+
+            SetCrudName(
+                text: "Empleados",
+                active: 0,
+                data: employeeRepo.GetAll(),
+                columns: columns
+            );
         }
 
         private void DepartmentsBtn_Click(object sender, EventArgs e)
         {
-            SetCrudName("Departamentos", 1);
-            DgvGeneric.DataSource = departmentRepo.GetAll();
+            columns = new List<Column>()
+            {
+                new Column()
+                {
+                    Name = "Name",
+                    Text = "Nombre"
+                },
+                new Column()
+                {
+                    Name = "Status",
+                    Text = "Estado"
+                },
+                new Column()
+                {
+                    Name = "CreatedDate",
+                    Text = "Fecha de Creacion"
+                },
+            };
+
+            SetCrudName(
+                text: "Departamentos",
+                active: 1,
+                data: departmentRepo.GetAll(),
+                columns: columns
+            );
         }
 
         private void ItemsBtn_Click(object sender, EventArgs e)
         {
-            SetCrudName("Articulos", 2);
-            DgvGeneric.DataSource = itemRepo.GetAll();
+            columns = new List<Column>()
+            {
+                new Column()
+                {
+                    Name = "Name",
+                    Text = "Nombre"
+                },
+                new Column()
+                {
+                    Name = "Description",
+                    Text = "Descripcion"
+                },
+                new Column()
+                {
+                    Name = "Brand",
+                    Text = "Marca"
+                },
+                new Column()
+                {
+                    Name = "Unit",
+                    Text = "Unidad de Medida"
+                },
+                new Column()
+                {
+                    Name = "Stock",
+                    Text = "Existencia"
+                },
+                new Column()
+                {
+                    Name = "Status",
+                    Text = "Estado"
+                },
+                new Column()
+                {
+                    Name = "CreatedDate",
+                    Text = "Fecha de Creacion"
+                },
+            };
+
+            SetCrudName(
+                text: "Articulos",
+                active: 2,
+                data: itemRepo.GetAll(),
+                columns: columns
+            );
         }
 
         private void BrandsBtn_Click(object sender, EventArgs e)
         {
-            SetCrudName("Marcas", 3);
-            DgvGeneric.DataSource = brandRepo.GetAll();
+            columns = new List<Column>()
+            {
+                new Column()
+                {
+                    Name = "Name",
+                    Text = "Nombre"
+                },
+                new Column()
+                {
+                    Name = "Description",
+                    Text = "Descripcion"
+                },
+                new Column()
+                {
+                    Name = "Status",
+                    Text = "Estado"
+                },
+                new Column()
+                {
+                    Name = "CreatedDate",
+                    Text = "Fecha de Creacion"
+                },
+            };
+
+            SetCrudName(
+                text: "Marcas",
+                active: 3,
+                data: brandRepo.GetAll(),
+                columns: columns
+            );
         }
 
         private void UnitBtn_Click(object sender, EventArgs e)
         {
-            SetCrudName("Unidades de Medida", 4);
-            // DgvGeneric.DataSource = unitRepo.GetAll();
+            columns = new List<Column>()
+            {
+                new Column()
+                {
+                    Name = "Name",
+                    Text = "Nombre"
+                },
+                new Column()
+                {
+                    Name = "Description",
+                    Text = "Descripcion"
+                },
+                new Column()
+                {
+                    Name = "Status",
+                    Text = "Estado"
+                },
+                new Column()
+                {
+                    Name = "CreatedDate",
+                    Text = "Fecha de Creacion"
+                },
+            };
+
+            SetCrudName(
+                text: "Unidades de Medida",
+                active: 4,
+                data: unitRepo.GetAll(),
+                columns: columns
+            );
         }
 
         private void ProvidersBtn_Click(object sender, EventArgs e)
         {
-            SetCrudName("Proveedores", 5);
-            // DgvGeneric.DataSource = providerRepo.GetAll();
+            columns = new List<Column>()
+            {
+                new Column()
+                {
+                    Name = "Identification",
+                    Text = "Identificacion"
+                },
+                new Column()
+                {
+                    Name = "Name",
+                    Text = "Nombre"
+                },
+                new Column()
+                {
+                    Name = "PublicName",
+                    Text = "Nombre Cormercial"
+                },
+                new Column()
+                {
+                    Name = "Status",
+                    Text = "Estado"
+                },
+                new Column()
+                {
+                    Name = "CreatedDate",
+                    Text = "Fecha de Creacion"
+                },
+            };
+
+            SetCrudName(
+                text: "Proveedores",
+                active: 5,
+                data: providerRepo.GetAll(),
+                columns: columns
+            );
         }
 
         private void RequestBtn_Click(object sender, EventArgs e)
         {
-            SetCrudName("Registro de Solicitudes", 6);
+            // SetCrudName("Registro de Solicitudes", 6);
             // DgvGeneric.DataSource = requestRepo.GetAll();
         }
 
         private void OrdersBtn_Click(object sender, EventArgs e)
         {
-            SetCrudName("Ordenes de Compra", 7);
+            // SetCrudName("Ordenes de Compra", 7);
             // DgvGeneric.DataSource = orderRepo.GetAll();
         }
 
         private void UsersBtn_Click(object sender, EventArgs e)
         {
-            SetCrudName("Usuarios", 8);
-            DgvGeneric.DataSource = userRepo.GetAll();
+            columns = new List<Column>()
+            {
+                new Column()
+                {
+                    Name = "Name",
+                    Text = "Nombre"
+                },
+                new Column()
+                {
+                    Name = "Username",
+                    Text = "Nombre de Usuario"
+                },
+                new Column()
+                {
+                    Name = "Identification",
+                    Text = "Identificacion"
+                },
+                new Column()
+                {
+                    Name = "Status",
+                    Text = "Estado"
+                },
+                new Column()
+                {
+                    Name = "CreatedDate",
+                    Text = "Fecha de Creacion"
+                },
+            };
+
+            SetCrudName(
+                text: "Usuarios",
+                active: 8,
+                data: userRepo.GetAll(),
+                columns: columns
+            );
         }
 
         #endregion
@@ -117,17 +348,77 @@ namespace Sistemacompras
 
         private void DeleteBtn_Click(object sender, EventArgs e)
         {
+            DataGridViewRow selectedRow = new DataGridViewRow();
+            try
+            {
+                selectedRow = DgvGeneric.SelectedRows[0];
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return;
+            }
 
+            int idToDelete = int.Parse(selectedRow.Cells[0].Value.ToString());
+
+            switch (activeGrid)
+            {
+                case 0:
+                    if (idToDelete == employeeRepo.Get(idToDelete).Id)
+                    {
+                        employeeRepo.Delete(idToDelete);
+                        ShowDeletedMessage(sender, e);
+                    }
+                    break;
+            }
         }
 
         private void RefreshBtn_Click(object sender, EventArgs e)
         {
-
+            switch (activeGrid)
+            {
+                case 0:
+                    EmployeesBtn_Click(sender, e);
+                    break;
+                case 1:
+                    DepartmentsBtn_Click(sender, e);
+                    break;
+                case 2:
+                    ItemsBtn_Click(sender, e);
+                    break;
+                case 3:
+                    BrandsBtn_Click(sender, e);
+                    break;
+                case 4:
+                    UnitBtn_Click(sender, e);
+                    break;
+                case 5:
+                    ProvidersBtn_Click(sender, e);
+                    break;
+                case 6:
+                    RequestBtn_Click(sender, e);
+                    break;
+                case 7:
+                    OrdersBtn_Click(sender, e);
+                    break;
+                case 8:
+                    UsersBtn_Click(sender, e);
+                    break;
+            }
         }
 
         private void SearchBtn_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void ShowDeletedMessage(object sender, EventArgs e)
+        {
+            MessageBox.Show(
+                text: "Registro eliminado",
+                caption: "Information",
+                buttons: MessageBoxButtons.OK,
+                icon: MessageBoxIcon.Information);
         }
         #endregion
 
@@ -150,8 +441,8 @@ namespace Sistemacompras
                         caption: "Error",
                         buttons: MessageBoxButtons.OK,
                         icon: MessageBoxIcon.Error);
+                    return;
                 }
-
             }
 
             switch (activeGrid)
@@ -170,6 +461,14 @@ namespace Sistemacompras
                     break;
                 case 3:
                     newForm = new BrandForm(mode, selectedRow);
+                    newForm.ShowDialog();
+                    break;
+                case 4:
+                    newForm = new UnitForm(mode, selectedRow);
+                    newForm.ShowDialog();
+                    break;
+                case 5:
+                    newForm = new ProviderForm(mode, selectedRow);
                     newForm.ShowDialog();
                     break;
                 case 8:

@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using Sistemacompras.Repositories;
 using Sistemacompras.Dto;
 using Sistemacompras.Entities;
+using Sistemacompras.Enum;
 
 namespace Sistemacompras.Forms
 {
@@ -19,7 +20,7 @@ namespace Sistemacompras.Forms
         public DataGridViewRow row;
         private readonly ItemRepository itemRepo;
         private readonly PurchaseContext _Context;
-        private ItemDto item;
+        private readonly ItemDto item;
 
         public ItemForm(string mode, DataGridViewRow row)
         {
@@ -47,11 +48,38 @@ namespace Sistemacompras.Forms
 
         private void ItemForm_Load(object sender, EventArgs e)
         {
+            var brands = _Context.Brands
+                .Where(x => x.StatusId == (int)StatusEnum.Active)
+                .Select(x => new
+                {
+                    x.Name
+                })
+                .ToArray();
+            var units = _Context.Units
+                .Where(x => x.StatusId == (int)StatusEnum.Active)
+                .Select(x => new
+                {
+                    x.Name
+                })
+                .ToArray();
             var statuses = _Context.Statuses
+                .Where(x => x.Id == (int)StatusEnum.Active
+                    || x.Id == (int)StatusEnum.Inactive
+                )
                 .Select(x => new {
                     x.Name
                 })
                 .ToArray();
+
+            foreach (var brand in brands)
+            {
+                BrandCbx.Items.Add(brand.Name ?? "");
+            }
+
+            foreach (var unit in units)
+            {
+                UnitCbx.Items.Add(unit.Name);
+            }
 
             foreach (var status in statuses)
             {
@@ -62,12 +90,23 @@ namespace Sistemacompras.Forms
             {
                 try
                 {
-                    item.Id = int.Parse(row.Cells[0].Value.ToString());
-                    item.Description = row.Cells[1].Value.ToString();
-                    item.Status = row.Cells[2].Value.ToString();
+                    item.Id = int.Parse(row.Cells[0].Value?.ToString());
+                    item.Name = row.Cells[1].Value?.ToString();
+                    item.Description = row.Cells[2].Value?.ToString();
+                    item.Brand = row.Cells[3].Value?.ToString();
+                    item.Unit = row.Cells[4].Value?.ToString();
+
+                    int.TryParse(row.Cells[5].Value?.ToString(), out int stock);
+                    item.Stock = stock;
+
+                    item.Status = row.Cells[6].Value?.ToString();
 
                     IdTxt.Text = item.Id.ToString();
+                    NameTxt.Text = item.Name;
                     DescriptionTxt.Text = item.Description;
+                    BrandCbx.Text = item.Brand;
+                    UnitCbx.Text = item.Unit;
+                    StockTxt.Text = item.Stock.ToString();
                     StatusCbx.Text = item.Status;
                 }
                 catch (Exception ex)
@@ -91,14 +130,34 @@ namespace Sistemacompras.Forms
                     id = IdTxt.Text.ToString();
 
                 item.Id = int.Parse(id);
+                item.Name = NameTxt.Text;
                 item.Description = DescriptionTxt.Text;
-                item.Status = row.Cells[2].Value.ToString();
+                item.Brand = BrandCbx.SelectedIndex.ToString();
+                item.Unit = UnitCbx.SelectedIndex.ToString();
+
+                int.TryParse(StockTxt.Text, out int stock);
+                item.Stock = stock;
+
+                item.Status = StatusCbx.SelectedIndex.ToString();
 
                 Item data = new Item
                 {
                     Id = item.Id,
+                    Name = item.Name,
                     Description = item.Description,
-                    StatusId = StatusCbx.SelectedIndex + 1
+                    BrandId = _Context.Brands
+                        .Where(x => x.Id == (BrandCbx.SelectedIndex + 1))
+                        .Select(x => x.Id)
+                        .FirstOrDefault(),
+                    UnitId = _Context.Units
+                        .Where(x => x.Id == (UnitCbx.SelectedIndex + 1))
+                        .Select(x => x.Id)
+                        .FirstOrDefault(),
+                    Stock = item.Stock,
+                    StatusId = _Context.Statuses
+                        .Where(x => x.Id == (StatusCbx.SelectedIndex + 1))
+                        .Select(x => x.Id)
+                        .FirstOrDefault()
                 };
 
                 if (mode.Equals("Create"))

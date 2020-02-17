@@ -26,6 +26,7 @@ namespace Sistemacompras.Repositories
                 .Select(x => new BrandDto
                 {
                     Id = x.Id,
+                    Name = x.Name,
                     Description = x.Description,
                     Status = x.Status.Name,
                     CreatedDate = x.CreatedDate
@@ -36,10 +37,13 @@ namespace Sistemacompras.Repositories
         public IEnumerable<BrandDto> GetAll()
         {
             return _Context.Brands
-                .Where(x => x.StatusId == (int)StatusEnum.Active)
+                .Where(x => x.StatusId == (int)StatusEnum.Inactive
+                    || x.StatusId == (int)StatusEnum.Active
+                )
                 .Select(x => new BrandDto
                 {
                     Id = x.Id,
+                    Name = x.Name,
                     Description = x.Description,
                     Status = x.Status.Name,
                     CreatedDate = x.CreatedDate
@@ -57,12 +61,13 @@ namespace Sistemacompras.Repositories
 
         public BrandDto Update(Brand data)
         {
-            if (data?.Id != null)
+            if (data.Id > 0)
             {
                 Brand brand = _Context.Brands
                     .Where(x => x.Id == data.Id)
                     .FirstOrDefault();
 
+                brand.Name = data.Name;
                 brand.Description = data.Description;
                 brand.StatusId = data.StatusId;
                 _Context.SaveChanges();

@@ -1,84 +1,78 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Sistemacompras.Contracts;
+﻿using Sistemacompras.Contracts;
+using Sistemacompras.Dto;
 using Sistemacompras.Entities;
 using Sistemacompras.Enum;
-using Sistemacompras.Dto;
-using System.Data.Entity;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Sistemacompras.Repositories
 {
-    class DepartmentRepository: IRepository<Department, DepartmentDto>
+    class ProviderRepository : IRepository<Provider, ProviderDto>
     {
-        private PurchaseContext _Context;
+        private readonly PurchaseContext _Context;
 
-        public DepartmentRepository()
+        public ProviderRepository()
         {
             _Context = new PurchaseContext();
         }
 
-        public DepartmentDto Get(int id)
+        public ProviderDto Get(int id)
         {
-            return _Context.Departments
+            return _Context.Providers
                 .Where(x => x.Id == id)
-                .Select(x => new DepartmentDto
+                .Select(x => new ProviderDto
                 {
                     Id = x.Id,
+                    Identification = x.Identification,
                     Name = x.Name,
+                    PublicName = x.PublicName,
                     Status = x.Status.Name,
                     CreatedDate = x.CreatedDate
                 })
                 .FirstOrDefault();
         }
 
-        public IEnumerable<DepartmentDto> GetAll()
+        public IEnumerable<ProviderDto> GetAll()
         {
-            return _Context.Departments
+            return _Context.Providers
                 .Where(x => x.StatusId == (int)StatusEnum.Inactive
                     || x.StatusId == (int)StatusEnum.Active
                 )
-                .Select(x => new DepartmentDto
+                .Select(x => new ProviderDto
                 {
                     Id = x.Id,
+                    Identification = x.Identification,
                     Name = x.Name,
+                    PublicName = x.PublicName,
                     Status = x.Status.Name,
                     CreatedDate = x.CreatedDate
                 })
                 .ToList();
         }
 
-        public DepartmentDto Create(Department data)
+        public ProviderDto Create(Provider data)
         {
-            Department item = _Context.Departments.Add(data);
+            Provider item = _Context.Providers.Add(data);
             _Context.SaveChanges();
 
             return Get(item.Id);
         }
 
-        public DepartmentDto Update(Department data)
+        public ProviderDto Update(Provider data)
         {
             if (data.Id > 0)
             {
-                Department department = _Context.Departments
+                Provider provider = _Context.Providers
                     .Where(x => x.Id == data.Id)
                     .FirstOrDefault();
 
-                if (department != null)
-                {
-                    department.Name = data.Name;
-                    department.StatusId = data.StatusId;
-                    _Context.SaveChanges();
+                provider.Identification = data.Identification;
+                provider.Name = data.Name;
+                provider.PublicName = data.PublicName;
+                provider.StatusId = data.StatusId;
+                _Context.SaveChanges();
 
-                    return Get(department.Id);
-                }
-                else
-                {
-                    return null;
-                }
-
+                return Get(provider.Id);
             }
             else
             {
@@ -90,12 +84,12 @@ namespace Sistemacompras.Repositories
         {
             if (id > 0)
             {
-                Department Department = _Context.Departments
+                Provider provider = _Context.Providers
                     .Where(x => x.Id == id)
                     .FirstOrDefault();
 
-                Department.StatusId = (int)StatusEnum.Inactive;
-                return Department.Id;
+                provider.StatusId = (int)StatusEnum.Deleted;
+                return provider.Id;
             }
             else
             {

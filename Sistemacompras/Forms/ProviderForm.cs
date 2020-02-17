@@ -7,27 +7,27 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Sistemacompras.Entities;
 using Sistemacompras.Repositories;
 using Sistemacompras.Dto;
+using Sistemacompras.Entities;
 using Sistemacompras.Enum;
 
 namespace Sistemacompras.Forms
 {
-    public partial class DepartmentForm : Form
+    public partial class ProviderForm : Form
     {
-        private readonly string mode;
+        public string mode;
         public DataGridViewRow row;
+        private readonly ProviderRepository providerRepo;
         private readonly PurchaseContext _Context;
-        private readonly DepartmentRepository departmentRepo;
-        private DepartmentDto department;
+        private readonly ProviderDto provider;
 
-        public DepartmentForm(string mode, DataGridViewRow row)
+        public ProviderForm(string mode, DataGridViewRow row)
         {
             InitializeComponent();
             _Context = new PurchaseContext();
-            departmentRepo = new DepartmentRepository();
-            department = new DepartmentDto();
+            providerRepo = new ProviderRepository();
+            provider = new ProviderDto();
 
             if (mode != null)
             {
@@ -35,18 +35,18 @@ namespace Sistemacompras.Forms
 
                 if (this.mode.Equals("Create"))
                 {
-                    Text = "Crear Departamento";
+                    Text = "Crear Unidad de Medida";
                 }
 
                 if (this.mode.Equals("Edit"))
                 {
-                    Text = "Editar Departamento";
+                    Text = "Editar Unidad de Medida";
                     this.row = row;
                 }
             }
         }
 
-        private void DepartmentForm_Load(object sender, EventArgs e)
+        private void ProviderForm_Load(object sender, EventArgs e)
         {
             var statuses = _Context.Statuses
                 .Where(x => x.Id == (int)StatusEnum.Active
@@ -64,17 +64,19 @@ namespace Sistemacompras.Forms
 
             if (mode.Equals("Create") == false)
             {
-                department = new DepartmentDto();
-
                 try
                 {
-                    department.Id = int.Parse(row.Cells[0].Value?.ToString());
-                    department.Name = row.Cells[1].Value?.ToString();
-                    department.Status = row.Cells[2].Value?.ToString();
+                    provider.Id = int.Parse(row.Cells[0].Value.ToString());
+                    provider.Identification = row.Cells[1].Value?.ToString();
+                    provider.Name = row.Cells[2].Value?.ToString();
+                    provider.PublicName = row.Cells[3].Value?.ToString();
+                    provider.Status = row.Cells[4].Value?.ToString();
 
-                    IdTxt.Text = department.Id.ToString();
-                    NameTxt.Text = department.Name;
-                    StatusCbx.Text = department.Status;
+                    IdTxt.Text = provider.Id.ToString();
+                    IdentificationTxt.Text = provider.Identification;
+                    NameTxt.Text = provider.Name;
+                    PublicNameTxt.Text = provider.PublicName;
+                    StatusCbx.Text = provider.Status;
                 }
                 catch (Exception ex)
                 {
@@ -96,14 +98,18 @@ namespace Sistemacompras.Forms
                 if (!IdTxt.Text.Equals(""))
                     id = IdTxt.Text.ToString();
 
-                department.Id = int.Parse(id);
-                department.Name = NameTxt.Text.ToString();
-                department.Status = StatusCbx.SelectedIndex.ToString();
+                provider.Id = int.Parse(id);
+                provider.Identification = IdentificationTxt.Text;
+                provider.Name = NameTxt.Text;
+                provider.PublicName = PublicNameTxt.Text;
+                provider.Status = StatusCbx.SelectedIndex.ToString();
 
-                Department item = new Department
+                Provider item = new Provider
                 {
-                    Id = department.Id,
-                    Name = department.Name,
+                    Id = provider.Id,
+                    Identification = provider.Identification,
+                    Name = provider.Name,
+                    PublicName = provider.PublicName,
                     StatusId = _Context.Statuses
                         .Where(x => x.Id == (StatusCbx.SelectedIndex + 1))
                         .Select(x => x.Id)
@@ -112,11 +118,11 @@ namespace Sistemacompras.Forms
 
                 if (mode.Equals("Create"))
                 {
-                    departmentRepo.Create(item);
+                    providerRepo.Create(item);
                 }
                 else
                 {
-                    departmentRepo.Update(item);
+                    providerRepo.Update(item);
                 }
 
                 Close();
@@ -136,7 +142,6 @@ namespace Sistemacompras.Forms
                     buttons: MessageBoxButtons.OK,
                     icon: MessageBoxIcon.Error);
             }
-
         }
     }
 }

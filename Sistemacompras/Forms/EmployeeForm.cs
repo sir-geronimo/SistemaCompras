@@ -20,7 +20,7 @@ namespace Sistemacompras.Forms
         public DataGridViewRow row;
         private readonly EmployeeRepository employeeRepo;
         private readonly PurchaseContext _Context;
-        private EmployeeDto employee;
+        private readonly EmployeeDto employee;
 
         public EmployeeForm(string mode, DataGridViewRow row)
         {
@@ -61,6 +61,9 @@ namespace Sistemacompras.Forms
                 })
                 .ToArray();
             var statuses = _Context.Statuses
+                .Where(x => x.Id == (int)StatusEnum.Active
+                    || x.Id == (int)StatusEnum.Inactive
+                )
                 .Select(x => new {
                     x.Name
                 })
@@ -71,9 +74,9 @@ namespace Sistemacompras.Forms
                 UserCbx.Items.Add(user.Name);
             }
 
-            foreach (var deparment in departments)
+            foreach (var department in departments)
             {
-                DepartmentCbx.Items.Add(deparment.Name);
+                DepartmentCbx.Items.Add(department.Name);
             }
 
             foreach (var status in statuses)
@@ -92,8 +95,6 @@ namespace Sistemacompras.Forms
 
                     IdTxt.Text = employee.Id.ToString();
                     UserCbx.Text = employee.Name;
-                    //UserCbx.SelectedIndex = UserCbx.FindStringExact(employee.Name)
-                    //UserCbx.SelectedIndex = UserCbx.Items.IndexOf(employee.Name);
                     DepartmentCbx.Text = employee.Department;
                     StatusCbx.Text = employee.Status;
                 }
@@ -133,7 +134,10 @@ namespace Sistemacompras.Forms
                         .Where(x => x.Id == (DepartmentCbx.SelectedIndex + 1))
                         .Select(x => x.Id)
                         .FirstOrDefault(),
-                    StatusId = StatusCbx.SelectedIndex + 1
+                    StatusId = _Context.Statuses
+                        .Where(x => x.Id == (StatusCbx.SelectedIndex + 1))
+                        .Select(x => x.Id)
+                        .FirstOrDefault()
                 };
 
                 if (mode.Equals("Create"))

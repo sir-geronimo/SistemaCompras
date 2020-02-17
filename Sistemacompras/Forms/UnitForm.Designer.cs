@@ -1,6 +1,6 @@
 ﻿namespace Sistemacompras.Forms
 {
-    partial class BrandForm
+    partial class UnitForm
     {
         /// <summary>
         /// Required designer variable.
@@ -117,7 +117,7 @@
             this.NameTxt.Size = new System.Drawing.Size(121, 20);
             this.NameTxt.TabIndex = 17;
             // 
-            // BrandForm
+            // UnitForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -131,9 +131,9 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.IdTxt);
             this.Controls.Add(this.label1);
-            this.Name = "BrandForm";
-            this.Text = "Marca";
-            this.Load += new System.EventHandler(this.BrandForm_Load);
+            this.Name = "UnitForm";
+            this.Text = "Unidad de Medida";
+            this.Load += new System.EventHandler(this.UnitForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

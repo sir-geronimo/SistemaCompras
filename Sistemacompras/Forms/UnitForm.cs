@@ -7,27 +7,27 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Sistemacompras.Entities;
 using Sistemacompras.Repositories;
 using Sistemacompras.Dto;
+using Sistemacompras.Entities;
 using Sistemacompras.Enum;
 
 namespace Sistemacompras.Forms
 {
-    public partial class DepartmentForm : Form
+    public partial class UnitForm : Form
     {
-        private readonly string mode;
+        public string mode;
         public DataGridViewRow row;
+        private readonly UnitRepository unitRepo;
         private readonly PurchaseContext _Context;
-        private readonly DepartmentRepository departmentRepo;
-        private DepartmentDto department;
+        private readonly UnitDto unit;
 
-        public DepartmentForm(string mode, DataGridViewRow row)
+        public UnitForm(string mode, DataGridViewRow row)
         {
             InitializeComponent();
             _Context = new PurchaseContext();
-            departmentRepo = new DepartmentRepository();
-            department = new DepartmentDto();
+            unitRepo = new UnitRepository();
+            unit = new UnitDto();
 
             if (mode != null)
             {
@@ -35,18 +35,18 @@ namespace Sistemacompras.Forms
 
                 if (this.mode.Equals("Create"))
                 {
-                    Text = "Crear Departamento";
+                    Text = "Crear Unidad de Medida";
                 }
 
                 if (this.mode.Equals("Edit"))
                 {
-                    Text = "Editar Departamento";
+                    Text = "Editar Unidad de Medida";
                     this.row = row;
                 }
             }
         }
 
-        private void DepartmentForm_Load(object sender, EventArgs e)
+        private void UnitForm_Load(object sender, EventArgs e)
         {
             var statuses = _Context.Statuses
                 .Where(x => x.Id == (int)StatusEnum.Active
@@ -64,17 +64,17 @@ namespace Sistemacompras.Forms
 
             if (mode.Equals("Create") == false)
             {
-                department = new DepartmentDto();
-
                 try
                 {
-                    department.Id = int.Parse(row.Cells[0].Value?.ToString());
-                    department.Name = row.Cells[1].Value?.ToString();
-                    department.Status = row.Cells[2].Value?.ToString();
+                    unit.Id = int.Parse(row.Cells[0].Value.ToString());
+                    unit.Name = row.Cells[1].Value?.ToString();
+                    unit.Description = row.Cells[2].Value?.ToString();
+                    unit.Status = row.Cells[3].Value?.ToString();
 
-                    IdTxt.Text = department.Id.ToString();
-                    NameTxt.Text = department.Name;
-                    StatusCbx.Text = department.Status;
+                    IdTxt.Text = unit.Id.ToString();
+                    NameTxt.Text = unit.Name;
+                    DescriptionTxt.Text = unit.Description;
+                    StatusCbx.Text = unit.Status;
                 }
                 catch (Exception ex)
                 {
@@ -96,14 +96,16 @@ namespace Sistemacompras.Forms
                 if (!IdTxt.Text.Equals(""))
                     id = IdTxt.Text.ToString();
 
-                department.Id = int.Parse(id);
-                department.Name = NameTxt.Text.ToString();
-                department.Status = StatusCbx.SelectedIndex.ToString();
+                unit.Id = int.Parse(id);
+                unit.Name = NameTxt.Text;
+                unit.Description = DescriptionTxt.Text;
+                unit.Status = StatusCbx.SelectedIndex.ToString();
 
-                Department item = new Department
+                Unit item = new Unit
                 {
-                    Id = department.Id,
-                    Name = department.Name,
+                    Id = unit.Id,
+                    Name = unit.Name,
+                    Description = unit.Description,
                     StatusId = _Context.Statuses
                         .Where(x => x.Id == (StatusCbx.SelectedIndex + 1))
                         .Select(x => x.Id)
@@ -112,11 +114,11 @@ namespace Sistemacompras.Forms
 
                 if (mode.Equals("Create"))
                 {
-                    departmentRepo.Create(item);
+                    unitRepo.Create(item);
                 }
                 else
                 {
-                    departmentRepo.Update(item);
+                    unitRepo.Update(item);
                 }
 
                 Close();
@@ -136,7 +138,6 @@ namespace Sistemacompras.Forms
                     buttons: MessageBoxButtons.OK,
                     icon: MessageBoxIcon.Error);
             }
-
         }
     }
 }

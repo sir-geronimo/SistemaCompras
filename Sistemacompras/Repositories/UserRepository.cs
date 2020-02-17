@@ -61,7 +61,7 @@ namespace Sistemacompras.Repositories
 
         public UserDto Update(User data)
         {
-            if (data?.Id != null)
+            if (data.Id > 0)
             {
                 User user = _Context.Users
                     .Where(x => x.Id == data.Id)

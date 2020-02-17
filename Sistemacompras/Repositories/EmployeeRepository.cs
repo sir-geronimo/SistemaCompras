@@ -61,7 +61,7 @@ namespace Sistemacompras.Repositories
 
         public EmployeeDto Update(Employee data)
         {
-            if (data?.Id != null)
+            if (data.Id > 0)
             {
                 Employee employee = _Context.Employees
                     .Where(x => x.Id == data.Id)

@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using Sistemacompras.Repositories;
 using Sistemacompras.Dto;
 using Sistemacompras.Entities;
+using Sistemacompras.Enum;
 
 namespace Sistemacompras.Forms
 {
@@ -48,6 +49,9 @@ namespace Sistemacompras.Forms
         private void BrandForm_Load(object sender, EventArgs e)
         {
             var statuses = _Context.Statuses
+                .Where(x => x.Id == (int)StatusEnum.Active
+                    || x.Id == (int)StatusEnum.Inactive
+                )
                 .Select(x => new {
                     x.Name
                 })
@@ -63,10 +67,12 @@ namespace Sistemacompras.Forms
                 try
                 {
                     brand.Id = int.Parse(row.Cells[0].Value.ToString());
-                    brand.Description = row.Cells[1].Value.ToString() ?? "";
-                    brand.Status = row.Cells[2].Value.ToString();
+                    brand.Name = row.Cells[1].Value?.ToString();
+                    brand.Description = row.Cells[2].Value?.ToString();
+                    brand.Status = row.Cells[3].Value?.ToString();
 
                     IdTxt.Text = brand.Id.ToString();
+                    NameTxt.Text = brand.Name;
                     DescriptionTxt.Text = brand.Description;
                     StatusCbx.Text = brand.Status;
                 }
@@ -91,14 +97,19 @@ namespace Sistemacompras.Forms
                     id = IdTxt.Text.ToString();
 
                 brand.Id = int.Parse(id);
+                brand.Name = NameTxt.Text;
                 brand.Description = DescriptionTxt.Text;
                 brand.Status = StatusCbx.SelectedIndex.ToString();
 
                 Brand item = new Brand
                 {
                     Id = brand.Id,
+                    Name = brand.Name,
                     Description = brand.Description,
-                    StatusId = StatusCbx.SelectedIndex + 1
+                    StatusId = _Context.Statuses
+                        .Where(x => x.Id == (StatusCbx.SelectedIndex + 1))
+                        .Select(x => x.Id)
+                        .FirstOrDefault()
                 };
 
                 if (mode.Equals("Create"))

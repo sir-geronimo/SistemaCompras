@@ -15,6 +15,8 @@ namespace Sistemacompras.Entities
         public string Identification { get; set; }
         [MaxLength(100)]
         public string Name { get; set; }
+        [MaxLength(100)]
+        public string PublicName { get; set; }
         public int? StatusId { get; set; }
         public virtual Status Status { get; set; }
 

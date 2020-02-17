@@ -1,6 +1,6 @@
 ﻿namespace Sistemacompras.Forms
 {
-    partial class BrandForm
+    partial class ProviderForm
     {
         /// <summary>
         /// Required designer variable.
@@ -30,13 +30,15 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.IdTxt = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.SaveBtn = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.StatusCbx = new System.Windows.Forms.ComboBox();
-            this.DescriptionTxt = new System.Windows.Forms.RichTextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.NameTxt = new System.Windows.Forms.TextBox();
+            this.PublicNameTxt = new System.Windows.Forms.TextBox();
+            this.IdentificationTxt = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -56,14 +58,14 @@
             this.IdTxt.Size = new System.Drawing.Size(121, 20);
             this.IdTxt.TabIndex = 1;
             // 
-            // label2
+            // label5
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(22, 107);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(63, 13);
-            this.label2.TabIndex = 13;
-            this.label2.Text = "Descripcion";
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(22, 141);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(93, 13);
+            this.label5.TabIndex = 13;
+            this.label5.Text = "Nombre Comercial";
             // 
             // SaveBtn
             // 
@@ -92,19 +94,10 @@
             this.StatusCbx.Size = new System.Drawing.Size(121, 21);
             this.StatusCbx.TabIndex = 14;
             // 
-            // DescriptionTxt
-            // 
-            this.DescriptionTxt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.DescriptionTxt.Location = new System.Drawing.Point(125, 105);
-            this.DescriptionTxt.Name = "DescriptionTxt";
-            this.DescriptionTxt.Size = new System.Drawing.Size(121, 58);
-            this.DescriptionTxt.TabIndex = 14;
-            this.DescriptionTxt.Text = "";
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(23, 63);
+            this.label4.Location = new System.Drawing.Point(23, 101);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(44, 13);
             this.label4.TabIndex = 16;
@@ -112,28 +105,53 @@
             // 
             // NameTxt
             // 
-            this.NameTxt.Location = new System.Drawing.Point(125, 63);
+            this.NameTxt.Location = new System.Drawing.Point(125, 101);
             this.NameTxt.Name = "NameTxt";
             this.NameTxt.Size = new System.Drawing.Size(121, 20);
             this.NameTxt.TabIndex = 17;
             // 
-            // BrandForm
+            // PublicNameTxt
+            // 
+            this.PublicNameTxt.Location = new System.Drawing.Point(125, 138);
+            this.PublicNameTxt.Name = "PublicNameTxt";
+            this.PublicNameTxt.Size = new System.Drawing.Size(121, 20);
+            this.PublicNameTxt.TabIndex = 18;
+            // 
+            // IdentificationTxt
+            // 
+            this.IdentificationTxt.Location = new System.Drawing.Point(125, 61);
+            this.IdentificationTxt.Name = "IdentificationTxt";
+            this.IdentificationTxt.Size = new System.Drawing.Size(121, 20);
+            this.IdentificationTxt.TabIndex = 20;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(23, 61);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(70, 13);
+            this.label2.TabIndex = 19;
+            this.label2.Text = "Identificacion";
+            // 
+            // ProviderForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(289, 270);
+            this.Controls.Add(this.IdentificationTxt);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.PublicNameTxt);
             this.Controls.Add(this.NameTxt);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.DescriptionTxt);
             this.Controls.Add(this.SaveBtn);
             this.Controls.Add(this.StatusCbx);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.IdTxt);
             this.Controls.Add(this.label1);
-            this.Name = "BrandForm";
-            this.Text = "Marca";
-            this.Load += new System.EventHandler(this.BrandForm_Load);
+            this.Name = "ProviderForm";
+            this.Text = "Proveedor";
+            this.Load += new System.EventHandler(this.ProviderForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -143,12 +161,14 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox IdTxt;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button SaveBtn;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox StatusCbx;
-        private System.Windows.Forms.RichTextBox DescriptionTxt;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox NameTxt;
+        private System.Windows.Forms.TextBox PublicNameTxt;
+        private System.Windows.Forms.TextBox IdentificationTxt;
+        private System.Windows.Forms.Label label2;
     }
 }

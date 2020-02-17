@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Sistemacompras.Dto
 {
-    class BrandDto
+    class UnitDto
     {
         public int Id { get; set; }
         public string Name { get; set; }

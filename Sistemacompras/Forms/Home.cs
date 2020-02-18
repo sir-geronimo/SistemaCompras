@@ -14,9 +14,9 @@ namespace Sistemacompras
         private readonly EmployeeRepository employeeRepo;
         private readonly ItemRepository itemRepo;
         private readonly UserRepository userRepo;
-        // private readonly ItemRequestRepository requestRepo;
+        private readonly ItemRequestRepository itemRequestRepo;
         private readonly ProviderRepository providerRepo;
-        // private readonly PurchaseOrderRepository orderRepo;
+        private readonly PurchaseOrderRepository purchaseOrderRepo;
         // private readonly StatusRepository statusRepo;
         private readonly UnitRepository unitRepo;
         private int activeGrid;
@@ -30,9 +30,9 @@ namespace Sistemacompras
             employeeRepo = new EmployeeRepository();
             itemRepo = new ItemRepository();
             userRepo = new UserRepository();
-            // requestRepo = new GenericRepository<ItemRequest>();
+            itemRequestRepo = new ItemRequestRepository();
             providerRepo = new ProviderRepository();
-            // orderRepo = new GenericRepository<PurchaseOrder>();
+            purchaseOrderRepo = new PurchaseOrderRepository();
             // statusRepo = new GenericRepository<Status>();
             unitRepo = new UnitRepository();
         }
@@ -284,14 +284,110 @@ namespace Sistemacompras
 
         private void RequestBtn_Click(object sender, EventArgs e)
         {
-            // SetCrudName("Registro de Solicitudes", 6);
-            // DgvGeneric.DataSource = requestRepo.GetAll();
+            columns = new List<Column>()
+            {
+                new Column()
+                {
+                    Name = "Employee",
+                    Text = "Empleado Solicitante"
+                },
+                new Column()
+                {
+                    Name = "Date",
+                    Text = "Fecha de Solicitud"
+                },
+                new Column()
+                {
+                    Name = "Item",
+                    Text = "Articulo"
+                },
+                new Column()
+                {
+                    Name = "Quantity",
+                    Text = "Cantidad"
+                },
+                new Column()
+                {
+                    Name = "Unit",
+                    Text = "Unidad"
+                },
+                new Column()
+                {
+                    Name = "Status",
+                    Text = "Estado"
+                },
+                new Column()
+                {
+                    Name = "CreatedDate",
+                    Text = "Fecha de Creacion"
+                },
+            };
+
+            SetCrudName(
+                text: "Solicitudes de Articulos",
+                active: 6,
+                data: itemRequestRepo.GetAll(),
+                columns: columns
+            );
         }
 
         private void OrdersBtn_Click(object sender, EventArgs e)
         {
-            // SetCrudName("Ordenes de Compra", 7);
-            // DgvGeneric.DataSource = orderRepo.GetAll();
+            columns = new List<Column>()
+            {
+                new Column()
+                {
+                    Name = "ItemRequest",
+                    Text = "Identificador de Solicitud"
+                },
+                new Column()
+                {
+                    Name = "Date",
+                    Text = "Fecha de Orden"
+                },
+                new Column()
+                {
+                    Name = "Status",
+                    Text = "Estado"
+                },
+                new Column()
+                {
+                    Name = "Item",
+                    Text = "Articulo"
+                },
+                new Column()
+                {
+                    Name = "Quantity",
+                    Text = "Cantidad"
+                },
+                new Column()
+                {
+                    Name = "Unit",
+                    Text = "Unidad"
+                },
+                new Column()
+                {
+                    Name = "Brand",
+                    Text = "Marca"
+                },
+                new Column()
+                {
+                    Name = "Price",
+                    Text = "Costo Unitario"
+                },
+                new Column()
+                {
+                    Name = "CreatedDate",
+                    Text = "Fecha de Creacion"
+                }
+            };
+
+            SetCrudName(
+                text: "Ordenes de Compra",
+                active: 7,
+                data: purchaseOrderRepo.GetAll(),
+                columns: columns
+            );
         }
 
         private void UsersBtn_Click(object sender, EventArgs e)
@@ -349,9 +445,11 @@ namespace Sistemacompras
         private void DeleteBtn_Click(object sender, EventArgs e)
         {
             DataGridViewRow selectedRow = new DataGridViewRow();
+            int idToDelete;
             try
             {
                 selectedRow = DgvGeneric.SelectedRows[0];
+                idToDelete = int.Parse(selectedRow.Cells[0].Value.ToString());
             }
             catch (Exception ex)
             {
@@ -359,7 +457,6 @@ namespace Sistemacompras
                 return;
             }
 
-            int idToDelete = int.Parse(selectedRow.Cells[0].Value.ToString());
 
             switch (activeGrid)
             {
@@ -525,6 +622,14 @@ namespace Sistemacompras
                     break;
                 case 5:
                     newForm = new ProviderForm(mode, selectedRow);
+                    newForm.ShowDialog();
+                    break;
+                case 6:
+                    newForm = new ItemRequestForm(mode, selectedRow);
+                    newForm.ShowDialog();
+                    break;
+                case 7:
+                    newForm = new PurchaseOrderForm(mode, selectedRow);
                     newForm.ShowDialog();
                     break;
                 case 8:

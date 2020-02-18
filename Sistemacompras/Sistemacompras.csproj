@@ -64,6 +64,8 @@
     <Compile Include="Dto\EmployeeDto.cs" />
     <Compile Include="Dto\ItemDto.cs" />
     <Compile Include="Dto\ProviderDto.cs" />
+    <Compile Include="Dto\ItemRequestDto.cs" />
+    <Compile Include="Dto\PurchaseOrderDto.cs" />
     <Compile Include="Dto\UnitDto.cs" />
     <Compile Include="Dto\UserDto.cs" />
     <Compile Include="Entities\ItemRequest.cs" />
@@ -107,11 +109,23 @@
     <Compile Include="Forms\ItemForm.Designer.cs">
       <DependentUpon>ItemForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\ItemRequestForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ItemRequestForm.Designer.cs">
+      <DependentUpon>ItemRequestForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\ProviderForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\ProviderForm.Designer.cs">
       <DependentUpon>ProviderForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\PurchaseOrder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\PurchaseOrder.Designer.cs">
+      <DependentUpon>PurchaseOrder.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\UnitForm.cs">
       <SubType>Form</SubType>
@@ -157,6 +171,14 @@
     <Compile Include="Migrations\202002170101149_up7.designer.cs">
       <DependentUpon>202002170101149_up7.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202002180115265_up8.cs" />
+    <Compile Include="Migrations\202002180115265_up8.designer.cs">
+      <DependentUpon>202002180115265_up8.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002180116456_up9.cs" />
+    <Compile Include="Migrations\202002180116456_up9.designer.cs">
+      <DependentUpon>202002180116456_up9.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -165,7 +187,9 @@
     <Compile Include="Repositories\EmployeeRepository.cs" />
     <Compile Include="Repositories\BrandRepository.cs" />
     <Compile Include="Repositories\ItemRepository.cs" />
+    <Compile Include="Repositories\ItemRequestRepository.cs" />
     <Compile Include="Repositories\ProviderRepository.cs" />
+    <Compile Include="Repositories\PurchaseOrderRepository.cs" />
     <Compile Include="Repositories\UnitRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
     <EmbeddedResource Include="Forms\BrandForm.resx">
@@ -183,8 +207,14 @@
     <EmbeddedResource Include="Forms\ItemForm.resx">
       <DependentUpon>ItemForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ItemRequestForm.resx">
+      <DependentUpon>ItemRequestForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\ProviderForm.resx">
       <DependentUpon>ProviderForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\PurchaseOrder.resx">
+      <DependentUpon>PurchaseOrder.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\UnitForm.resx">
       <DependentUpon>UnitForm.cs</DependentUpon>
@@ -215,6 +245,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002170101149_up7.resx">
       <DependentUpon>202002170101149_up7.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002180115265_up8.resx">
+      <DependentUpon>202002180115265_up8.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002180116456_up9.resx">
+      <DependentUpon>202002180116456_up9.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

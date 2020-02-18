@@ -27,3 +27,7 @@ D:\www\Sistemacompras\Sistemacompras\obj\Debug\Sistemacompras.Forms.ProviderForm
 D:\www\Sistemacompras\Sistemacompras\obj\Debug\Sistemacompras.Migrations.up7.resources
 D:\www\Sistemacompras\Sistemacompras\obj\Debug\Sistemacompras.Home.resources
 D:\www\Sistemacompras\Sistemacompras\obj\Debug\Sistemacompras.Forms.UserForm.resources
+D:\www\Sistemacompras\Sistemacompras\obj\Debug\Sistemacompras.Forms.ItemRequestForm.resources
+D:\www\Sistemacompras\Sistemacompras\obj\Debug\Sistemacompras.Migrations.up8.resources
+D:\www\Sistemacompras\Sistemacompras\obj\Debug\Sistemacompras.Migrations.up9.resources
+D:\www\Sistemacompras\Sistemacompras\obj\Debug\Sistemacompras.Forms.PurchaseOrderForm.resources

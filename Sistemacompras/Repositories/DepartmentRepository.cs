@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Sistemacompras.Contracts;
+﻿using Sistemacompras.Contracts;
+using Sistemacompras.Dto;
 using Sistemacompras.Entities;
 using Sistemacompras.Enum;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Sistemacompras.Repositories
 {
-    class DepartmentRepository : IRepository<Department>
+    class DepartmentRepository : IRepository<Department, DepartmentDto>
     {
         private PurchaseContext _Context;
 
@@ -18,38 +16,65 @@ namespace Sistemacompras.Repositories
             _Context = new PurchaseContext();
         }
 
-        public Department Get(int id)
+        public DepartmentDto Get(int id)
         {
             return _Context.Departments
                 .Where(x => x.Id == id)
+                .Select(x => new DepartmentDto
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    Status = x.Status.Name,
+                    CreatedDate = x.CreatedDate
+                })
                 .FirstOrDefault();
         }
 
-        public IEnumerable<Department> GetAll()
+        public IEnumerable<DepartmentDto> GetAll()
         {
             return _Context.Departments
-                .Where(x => x.StatusId != (int)StatusEnum.Inactive)
+                .Where(x => x.StatusId == (int)StatusEnum.Inactive
+                    || x.StatusId == (int)StatusEnum.Active
+                )
+                .Select(x => new DepartmentDto
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    Status = x.Status.Name,
+                    CreatedDate = x.CreatedDate
+                })
                 .ToList();
         }
 
-        public Department Create(Department data)
+        public DepartmentDto Create(Department data)
         {
-            Department newDepartment = new Department();
+            Department item = _Context.Departments.Add(data);
+            _Context.SaveChanges();
 
-
-            return newDepartment;
+            return Get(item.Id);
         }
 
-        public Department Update(Department data)
+        public DepartmentDto Update(Department data)
         {
-            if (data?.Id != null)
+            if (data.Id > 0)
             {
-                Department Department = _Context.Departments
+                Department department = _Context.Departments
                     .Where(x => x.Id == data.Id)
                     .FirstOrDefault();
 
-                Department = data;
-                return Department;
+                if (department != null)
+                {
+                    department.Name = data.Name;
+                    department.StatusId = data.StatusId;
+                    _Context.SaveChanges();
+
+                    return Get(department.Id);
+                }
+                else
+                {
+                    return null;
+                }
+
             }
             else
             {
@@ -61,12 +86,14 @@ namespace Sistemacompras.Repositories
         {
             if (id > 0)
             {
-                Department Department = _Context.Departments
+                Department department = _Context.Departments
                     .Where(x => x.Id == id)
                     .FirstOrDefault();
 
-                Department.StatusId = (int)StatusEnum.Inactive;
-                return Department.Id;
+                department.StatusId = (int)StatusEnum.Deleted;
+                _Context.SaveChanges();
+
+                return department.Id;
             }
             else
             {

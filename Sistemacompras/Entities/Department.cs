@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿﻿using Sistemacompras.Contracts;
+using System;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Sistemacompras.Contracts;
 
 namespace Sistemacompras.Entities
 {

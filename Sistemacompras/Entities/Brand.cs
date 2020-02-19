@@ -1,10 +1,6 @@
 ﻿using Sistemacompras.Contracts;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Sistemacompras.Entities
 {
@@ -12,6 +8,9 @@ namespace Sistemacompras.Entities
     {
         [Key]
         public int Id { get; set; }
+        [MaxLength(100)]
+        public string Name { get; set; }
+        [MaxLength(100)]
         public string Description { get; set; }
         public int? StatusId { get; set; }
         public virtual Status Status { get; set; }

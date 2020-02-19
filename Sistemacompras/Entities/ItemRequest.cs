@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Sistemacompras.Contracts;
+﻿﻿using Sistemacompras.Contracts;
+using System;
 
 namespace Sistemacompras.Entities
 {
     class ItemRequest : IAuditableEntity
     {
         public int Id { get; set; }
-        public int RequestedBy { get; set; }
+        public int? EmployeeId { get; set; }
         public virtual Employee Employee { get; set; }
         public DateTime Date { get; set; }
         public int? ItemId { get; set; }

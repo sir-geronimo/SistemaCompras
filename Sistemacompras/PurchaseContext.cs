@@ -21,6 +21,7 @@ namespace Sistemacompras
         public DbSet<PurchaseOrder> PurchaseOrders { get; set; }
         public DbSet<Status> Statuses { get; set; }
         public DbSet<Unit> Units { get; set; }
+        public DbSet<User> Users { get; set; }
 
         public override int SaveChanges()
         {

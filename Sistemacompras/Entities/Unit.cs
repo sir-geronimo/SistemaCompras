@@ -1,15 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Sistemacompras.Contracts;
+﻿using Sistemacompras.Contracts;
+using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Sistemacompras.Entities
 {
     class Unit : IAuditableEntity
     {
         public int Id { get; set; }
+        [MaxLength(100)]
+        public string Name { get; set; }
+        [MaxLength(100)]
         public string Description { get; set; }
         public int? StatusId { get; set; }
         public virtual Status Status { get; set; }

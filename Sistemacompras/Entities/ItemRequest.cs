@@ -1,4 +1,4 @@
-﻿using Sistemacompras.Contracts;
+﻿﻿using Sistemacompras.Contracts;
 using System;
 
 namespace Sistemacompras.Entities

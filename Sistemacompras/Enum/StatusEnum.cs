@@ -1,4 +1,4 @@
-﻿namespace Sistemacompras.Enum
+﻿﻿namespace Sistemacompras.Enum
 {
     public enum StatusEnum
     {

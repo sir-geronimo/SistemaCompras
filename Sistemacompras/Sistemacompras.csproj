@@ -264,6 +264,15 @@
     <EmbeddedResource Include="Migrations\202002180116456_up9.resx">
       <DependentUpon>202002180116456_up9.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002160038538_up1.resx">
+      <DependentUpon>202002160038538_up1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002160113102_up2.resx">
+      <DependentUpon>202002160113102_up2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002160119446_up3.resx">
+      <DependentUpon>202002160119446_up3.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

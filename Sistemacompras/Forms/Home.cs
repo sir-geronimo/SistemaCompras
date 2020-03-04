@@ -19,6 +19,7 @@ namespace Sistemacompras
         private readonly PurchaseOrderRepository purchaseOrderRepo;
         // private readonly StatusRepository statusRepo;
         private readonly UnitRepository unitRepo;
+
         private int activeGrid;
         private List<Column> columns;
 
@@ -643,6 +644,11 @@ namespace Sistemacompras
         private void Home_Activated(object sender, EventArgs e)
         {
             RefreshBtn_Click(sender, e);
+        }
+
+        private void LogoutBtn_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

@@ -47,7 +47,7 @@
             this.RequestBtn = new System.Windows.Forms.Button();
             this.OrdersBtn = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.Btnx = new System.Windows.Forms.Button();
+            this.LogoutBtn = new System.Windows.Forms.Button();
             this.UsersBtn = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
@@ -246,7 +246,7 @@
             // panel3
             // 
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel3.Controls.Add(this.Btnx);
+            this.panel3.Controls.Add(this.LogoutBtn);
             this.panel3.Controls.Add(this.UsersBtn);
             this.panel3.Controls.Add(this.OrdersBtn);
             this.panel3.Controls.Add(this.RequestBtn);
@@ -262,15 +262,16 @@
             this.panel3.Size = new System.Drawing.Size(525, 125);
             this.panel3.TabIndex = 14;
             // 
-            // Btnx
+            // LogoutBtn
             // 
-            this.Btnx.Location = new System.Drawing.Point(413, 80);
-            this.Btnx.Name = "Btnx";
-            this.Btnx.Size = new System.Drawing.Size(97, 34);
-            this.Btnx.TabIndex = 10;
-            this.Btnx.Text = "?";
-            this.Btnx.UseVisualStyleBackColor = true;
-            this.Btnx.Visible = false;
+            this.LogoutBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LogoutBtn.Location = new System.Drawing.Point(413, 80);
+            this.LogoutBtn.Name = "LogoutBtn";
+            this.LogoutBtn.Size = new System.Drawing.Size(97, 34);
+            this.LogoutBtn.TabIndex = 10;
+            this.LogoutBtn.Text = "Salir";
+            this.LogoutBtn.UseVisualStyleBackColor = true;
+            this.LogoutBtn.Click += new System.EventHandler(this.LogoutBtn_Click);
             // 
             // UsersBtn
             // 
@@ -407,7 +408,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button Btnx;
+        private System.Windows.Forms.Button LogoutBtn;
         private System.Windows.Forms.Button UsersBtn;
     }
 }

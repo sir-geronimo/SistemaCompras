@@ -60,9 +60,9 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(23, 106);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(37, 13);
+            this.label3.Size = new System.Drawing.Size(40, 13);
             this.label3.TabIndex = 2;
-            this.label3.Text = "Status";
+            this.label3.Text = "Estado";
             // 
             // StatusCbx
             // 

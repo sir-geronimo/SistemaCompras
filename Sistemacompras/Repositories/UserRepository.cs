@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Sistemacompras.Contracts;
+﻿using Sistemacompras.Contracts;
+using Sistemacompras.Dto;
 using Sistemacompras.Entities;
 using Sistemacompras.Enum;
-using Sistemacompras.Dto;
+using System;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Sistemacompras.Repositories
 {
@@ -93,13 +93,82 @@ namespace Sistemacompras.Repositories
 
                 user.StatusId = (int)StatusEnum.Deleted;
                 _Context.SaveChanges();
-                
+
                 return user.Id;
             }
             else
             {
                 return 0;
             }
+        }
+
+        public bool Login(string username, string password)
+        {
+            var data = _Context.Users
+                .Where(x => x.Username == username)
+                .Select(x => new
+                {
+                    x.Username,
+                    x.Password
+                })
+                .FirstOrDefault();
+
+            if (data != null)
+            {
+                if (PasswordVerify(password, data.Password))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public async Task<User> Register(User user)
+        {
+            User existingUser = await _Context.Users
+                .Where(x => x.Username == user.Username)
+                .FirstOrDefaultAsync();
+
+            try
+            {
+
+                if (existingUser == null)
+                {
+                    user.Password = PasswordHash(user.Password);
+                    return _Context.Users.Add(user);
+                }
+                else
+                {
+                    throw new Exception("User already exists.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return null;
+            }
+        }
+
+        private string GenerateSalt()
+        {
+            return BCrypt.Net.BCrypt.GenerateSalt(12);
+        }
+
+        private string PasswordHash(string password)
+        {
+            return BCrypt.Net.BCrypt.HashPassword(password, GenerateSalt());
+        }
+
+        private bool PasswordVerify(string plainPassword, string hashedPassword)
+        {
+            return BCrypt.Net.BCrypt.Verify(plainPassword, hashedPassword);
         }
     }
 }

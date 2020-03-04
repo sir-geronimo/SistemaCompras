@@ -17,7 +17,7 @@ namespace Sistemacompras.Forms
         private readonly PurchaseContext _Context;
         private readonly UserDto user;
 
-        public UserForm(string mode, DataGridViewRow row)
+        public UserForm(string mode, DataGridViewRow row = null)
         {
             InitializeComponent();
             _Context = new PurchaseContext();

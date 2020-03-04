@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Sistemacompras.Forms;
+using System;
 using System.Windows.Forms;
 
 namespace Sistemacompras
@@ -16,7 +14,7 @@ namespace Sistemacompras
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Home());
+            Application.Run(new LoginForm());
         }
     }
 }

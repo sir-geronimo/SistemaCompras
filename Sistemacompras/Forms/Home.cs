@@ -645,7 +645,6 @@ namespace Sistemacompras
         {
             RefreshBtn_Click(sender, e);
         }
-
         private void LogoutBtn_Click(object sender, EventArgs e)
         {
             Close();

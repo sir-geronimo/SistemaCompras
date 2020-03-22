@@ -88,6 +88,7 @@
             this.RegisterBtn.TabIndex = 4;
             this.RegisterBtn.TabStop = true;
             this.RegisterBtn.Text = "Registrarse";
+            this.RegisterBtn.Visible = false;
             this.RegisterBtn.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.RegisterBtn_LinkClicked);
             // 
             // LoginForm

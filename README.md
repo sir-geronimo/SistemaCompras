@@ -10,5 +10,3 @@ A small application made to manage purchases
 
 ### Authors:
 * *Enger Jimenez*
-* *Shirley Contreras*
-* *Malcom Calivar*
